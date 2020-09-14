@@ -3,28 +3,35 @@
 
 
 import math
+#import pi from math
 
 
 def average(a: float, b: float, c: float) -> float:
-    return (a + b + c) / 3
+    moyenne = (a + b + c)/3
+    return moyenne
 
 
 def to_radians(angle_degs: float, angle_mins: float, angle_secs: float) -> float:
-    return (angle_degs + (angle_mins + angle_secs/60)/60) * math.pi/180
+    angle_pre_rad = angle_degs + (angle_mins / 60) + (angle_secs / 3600)
+    angle_rad = (math.pi * angle_pre_rad)/180
+    return angle_rad
 
 
 def to_degrees(angle_rads: float) -> tuple:
-    angle = (angle_rads * 360) / (2 * math.pi)
-    degrees, minutes, seconds = math.floor(angle), angle // 60, math.floor(angle/3600)
+    angle = (angle_rads * 180)/math.pi
+    degrees, minutes, seconds = math.floor(angle), math.floor(angle/60), math.floor(angle/3600)
     return degrees, minutes, seconds
+#aurait pu écrire angle // 60 qui est une division entière
 
 
 def to_celsius(temperature: float) -> float:
-    return (temperature - 32) / 1.8
+    temp_cel = (temperature - 32)*(5 / 9)
+    return 0.0
 
 
 def to_farenheit(temperature: float) -> float:
-    return temperature * 1.8 + 32
+    temp_f = (1.8 * temperature) + 32
+    return temp_f
 
 
 def main() -> None:
@@ -36,7 +43,7 @@ def main() -> None:
     print(f"Conversion de 1 radian en degres: {degrees} degres, {minutes} minutes et {seconds} secondes")
 
     print(f"Conversion de 100 Celsius en Farenheit: {to_farenheit(100.0)}")
-    print(f"Conversion de 212 Farenheit en Celsius: {to_celsius(212.0)}")
+    print(f"Conversion de 451 Farenheit en Celsius: {to_celsius(451.0)}")
 
 
 if __name__ == '__main__':
